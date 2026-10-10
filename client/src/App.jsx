@@ -7,6 +7,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ToastContainer from './components/Toast';
+import ElevatorBackground from './components/ElevatorBackground';
 
 // Auth Pages
 import Login from './pages/auth/Login';
@@ -60,9 +61,10 @@ const ProtectedLayout = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col relative overflow-hidden">
+      <ElevatorBackground opacity="opacity-30" />
       <Navbar />
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative z-10">
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">

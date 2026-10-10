@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, DEMO_ACCOUNTS } from '../../context/AuthContext';
 import { LogIn, ShieldAlert, ArrowRight, Building2, Wrench, ShieldCheck } from 'lucide-react';
+import ElevatorBackground from '../../components/ElevatorBackground';
 
 export default function Login() {
   const { login } = useAuth();
@@ -44,8 +45,8 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background industrial grid pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+      {/* Dynamic Animated Elevator Hoistway Background */}
+      <ElevatorBackground />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 shadow-xl shadow-blue-500/30 mb-4 transform hover:scale-105 transition">

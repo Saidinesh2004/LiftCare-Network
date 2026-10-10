@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import { KeyRound, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import ElevatorBackground from '../../components/ElevatorBackground';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -26,6 +27,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      <ElevatorBackground />
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
         <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
           <div className="text-center mb-6">

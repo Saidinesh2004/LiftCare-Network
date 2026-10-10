@@ -60,3 +60,156 @@
 .leaflet-popup-tip {
   background: #1e293b !important;
 }
+
+/* =========================================================
+   LiftCare Network: Vertical Mobility Ambient Background System
+   ========================================================= */
+
+@keyframes elevatorTransitUp {
+  0% {
+    transform: translateY(115vh);
+  }
+  45% {
+    transform: translateY(35vh);
+  }
+  50% {
+    transform: translateY(35vh);
+  }
+  95% {
+    transform: translateY(-20vh);
+  }
+  100% {
+    transform: translateY(-20vh);
+  }
+}
+
+@keyframes elevatorTransitDown {
+  0% {
+    transform: translateY(-20vh);
+  }
+  40% {
+    transform: translateY(50vh);
+  }
+  50% {
+    transform: translateY(50vh);
+  }
+  95% {
+    transform: translateY(115vh);
+  }
+  100% {
+    transform: translateY(115vh);
+  }
+}
+
+@keyframes counterweightTransit {
+  0% {
+    transform: translateY(-10vh);
+  }
+  45% {
+    transform: translateY(70vh);
+  }
+  50% {
+    transform: translateY(70vh);
+  }
+  95% {
+    transform: translateY(110vh);
+  }
+  100% {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes cableSignalPulse {
+  0% {
+    background-position: 0 -200px;
+  }
+  100% {
+    background-position: 0 1000px;
+  }
+}
+
+@keyframes escalatorTreadMotion {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px -40px;
+  }
+}
+
+@keyframes hudTelemetryFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes laserShaftScan {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+.anim-elevator-1 {
+  animation: elevatorTransitUp 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.anim-elevator-2 {
+  animation: elevatorTransitDown 30s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  animation-delay: -8s;
+}
+
+.anim-elevator-3 {
+  animation: elevatorTransitUp 19s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  animation-delay: -14s;
+}
+
+.anim-counterweight-1 {
+  animation: counterweightTransit 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.anim-cable-signal {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(56, 189, 248, 0.9) 50%,
+    transparent 100%
+  );
+  background-size: 100% 200px;
+  background-repeat: no-repeat;
+  animation: cableSignalPulse 3.5s linear infinite;
+}
+
+.anim-escalator-treads {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(56, 189, 248, 0.08) 0px,
+    rgba(56, 189, 248, 0.08) 2px,
+    transparent 2px,
+    transparent 16px
+  );
+  background-size: 40px 40px;
+  animation: escalatorTreadMotion 3s linear infinite;
+}
+
+.anim-hud-float {
+  animation: hudTelemetryFloat 6s ease-in-out infinite;
+}
+
+.anim-shaft-scan {
+  animation: laserShaftScan 8s ease-in-out infinite;
+}
+
