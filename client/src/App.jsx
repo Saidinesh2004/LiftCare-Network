@@ -9,6 +9,9 @@ import Sidebar from './components/Sidebar';
 import ToastContainer from './components/Toast';
 import ElevatorBackground from './components/ElevatorBackground';
 
+// Public Landing Page
+import LandingPage from './pages/landing/LandingPage';
+
 // Auth Pages
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -85,6 +88,32 @@ const RoleHomeDispatcher = () => {
   return <PMDashboard />;
 };
 
+// Root route: Renders LandingPage for public visitors, and Role Dashboard for authenticated users
+const RootRoute = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 text-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+          <span>Synchronizing LiftCare Network...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (user) {
+    return (
+      <ProtectedLayout>
+        <RoleHomeDispatcher />
+      </ProtectedLayout>
+    );
+  }
+
+  return <LandingPage />;
+};
+
 function App() {
   return (
     <AuthProvider>
@@ -92,14 +121,20 @@ function App() {
         <NotificationProvider>
           <Router>
             <Routes>
+              {/* Public Informational Landing Page */}
+              <Route path="/landing" element={<LandingPage />} />
+
               {/* Public Auth Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
 
-              {/* Protected App Routes */}
+              {/* Root Landing / Dashboard Switcher */}
+              <Route path="/" element={<RootRoute />} />
+
+              {/* Dedicated Protected Dashboard Route */}
               <Route
-                path="/"
+                path="/dashboard"
                 element={
                   <ProtectedLayout>
                     <RoleHomeDispatcher />

@@ -219,6 +219,15 @@ export default function Navbar() {
                     </Link>
                   )}
 
+                  <Link
+                    to="/landing"
+                    onClick={() => setShowProfileMenu(false)}
+                    className="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition flex items-center gap-2 mt-1"
+                  >
+                    <ExternalLink className="w-4 h-4 text-cyan-400" />
+                    Public Landing Page
+                  </Link>
+
                   <button
                     onClick={() => {
                       setShowProfileMenu(false);

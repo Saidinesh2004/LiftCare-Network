@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { UserPlus, Building2, Wrench, ShieldAlert } from 'lucide-react';
 import ElevatorBackground from '../../components/ElevatorBackground';
@@ -7,8 +7,21 @@ import ElevatorBackground from '../../components/ElevatorBackground';
 export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [role, setRole] = useState('PROPERTY_MANAGER'); // 'PROPERTY_MANAGER' | 'TECHNICIAN'
+  const urlRole = searchParams.get('role');
+  const [role, setRole] = useState(
+    urlRole === 'TECHNICIAN' ? 'TECHNICIAN' : 'PROPERTY_MANAGER'
+  );
+
+  useEffect(() => {
+    const requestedRole = searchParams.get('role');
+    if (requestedRole === 'TECHNICIAN') {
+      setRole('TECHNICIAN');
+    } else if (requestedRole === 'PROPERTY_MANAGER') {
+      setRole('PROPERTY_MANAGER');
+    }
+  }, [searchParams]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -70,7 +83,7 @@ export default function Register() {
           )}
 
           {/* Role selector tabs */}
-          <div className="grid grid-cols-2 gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-5">
+          <div className="grid grid-cols-2 gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-3">
             <button
               type="button"
               onClick={() => setRole('PROPERTY_MANAGER')}
@@ -95,6 +108,19 @@ export default function Register() {
               <Wrench className="w-4 h-4" />
               Licensed Technician
             </button>
+          </div>
+
+          {/* Contextual Onboarding Guidance */}
+          <div className="mb-5 px-3 py-2 rounded-lg bg-slate-950/80 border border-slate-800 text-[11px] leading-snug">
+            {role === 'PROPERTY_MANAGER' ? (
+              <span className="text-cyan-300">
+                🏢 <strong>Property Manager Portal:</strong> Catalog building elevators and escalators, request maintenance, and track job progress.
+              </span>
+            ) : (
+              <span className="text-emerald-300">
+                🔧 <strong>Technician Portal:</strong> Submit licenses for administrator review. Approved technicians receive eligible dispatch requests.
+              </span>
+            )}
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-3.5">
